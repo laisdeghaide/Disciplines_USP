@@ -1,0 +1,92 @@
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index f6b57799c1ea..1503e18b3f3a 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -369,6 +369,7 @@
+ 445	common	landlock_add_rule	sys_landlock_add_rule
+ 446	common	landlock_restrict_self	sys_landlock_restrict_self
+ 447	common	memfd_secret		sys_memfd_secret
++448 common  print           sys_print     
+ 
+ #
+ # Due to a historical design error, certain syscalls are numbered differently
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 69c9a7010081..69cf5d87a207 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -1265,6 +1265,8 @@ asmlinkage long sys_mmap_pgoff(unsigned long addr, unsigned long len,
+ 			unsigned long fd, unsigned long pgoff);
+ asmlinkage long sys_old_mmap(struct mmap_arg_struct __user *arg);
+ 
++asmlinkage long sys_print(char* str, int len);
++
+ 
+ /*
+  * Not a real system call, but a placeholder for syscalls which are
+diff --git a/include/uapi/asm-generic/unistd.h b/include/uapi/asm-generic/unistd.h
+index a9d6fcd95f42..e31ced2e8370 100644
+--- a/include/uapi/asm-generic/unistd.h
++++ b/include/uapi/asm-generic/unistd.h
+@@ -878,8 +878,11 @@ __SYSCALL(__NR_landlock_restrict_self, sys_landlock_restrict_self)
+ __SYSCALL(__NR_memfd_secret, sys_memfd_secret)
+ #endif
+ 
++#define __NR_print 448
++__SYSCALL(__NR_print, sys_print)
++
+ #undef __NR_syscalls
+-#define __NR_syscalls 448
++#define __NR_syscalls 449
+ 
+ /*
+  * 32 bit systems traditionally used different
+diff --git a/kernel/Makefile b/kernel/Makefile
+index 4df609be42d0..c674a1d6c9d5 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -53,6 +53,7 @@ obj-y += rcu/
+ obj-y += livepatch/
+ obj-y += dma/
+ obj-y += entry/
++obj-y += print.o
+ 
+ obj-$(CONFIG_KCMP) += kcmp.o
+ obj-$(CONFIG_FREEZER) += freezer.o
+diff --git a/kernel/print.c b/kernel/print.c
+new file mode 100644
+index 000000000000..d3426d8a7a97
+--- /dev/null
++++ b/kernel/print.c
+@@ -0,0 +1,20 @@
++#include <linux/syscalls.h>
++#include <linux/kernel.h>
++
++SYSCALL_DEFINE2(print, char __user *, str, int, len)
++{
++    char *buf;
++
++    buf = kmalloc(len+1, GFP_KERNEL);
++    if (!buf)
++        return -ENOMEM;
++
++    if (copy_from_user(buf, str, len+1))
++        return -EFAULT;
++
++    printk("%s", buf);
++
++    kfree(buf);
++    return 0;
++}
++
+diff --git a/kernel/sys_ni.c b/kernel/sys_ni.c
+index 30971b1dd4a9..05d150389827 100644
+--- a/kernel/sys_ni.c
++++ b/kernel/sys_ni.c
+@@ -478,6 +478,7 @@ COND_SYSCALL(setresgid16);
+ COND_SYSCALL(setresuid16);
+ COND_SYSCALL(setreuid16);
+ COND_SYSCALL(setuid16);
++COND_SYSCALL(print);
+ 
+ /* restartable sequence */
+ COND_SYSCALL(rseq);
