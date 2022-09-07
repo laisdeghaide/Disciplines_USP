@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(235,235,235);
+}
+
+.img-circle {
+    border-radius: 50%;
+    border: 3px solid #bc958f;
+}
+
+#img-profile {
+    width: 100px;
+    height: 100px;
+}
+
+.card {
+    background-color: #ffffff;
+    text-align: center;
+    width: 30%;
+    padding: 20px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    min-width: 400px;
+}
+
+.card h1, h2, p, li, #movies h3 {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card h1, li .fa {
+    color: #2eb2d2;
+}
+
+.card h1 {
+    font-size: x-large;
+}
+
+.card h2, p {
+    font-weight: 400;
+}
+
+.card h2 {
+    font-size: medium;
+    padding: 10px 0;
+}
+
+.card p {
+    opacity: 80%;
+    padding-bottom: 10px;
+}
+
+ul.list-inline {
+    list-style-type: none;
+}
+
+li {
+    display: inline-block;
+    font-size: 15px;
+    padding: 16px 16px;
+}
+
+li.text-center {
+    text-align: center;
+    margin: 5px;
+}
+
+.text-center a {
+    text-decoration: none;
+    color: #a7a7a7;
+}
+
+.img-movies {
+    width: 100px;
+}
+
+#movies {
+    text-align: justify;
+}
+
+#movies h3 {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 7px
+}
+
+#movies p {
+    font-size: 13px;
+}
+
+#movies td {
+    padding: 13px;
+}

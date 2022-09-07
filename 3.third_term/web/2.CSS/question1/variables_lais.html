@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>var()</title>
+        <meta charset="utf-8">
+
+    <style>
+        :root {
+            --bg-color: blue;
+            --cor-do-texto: #fff;
+            --espacamento: 20px;
+        }
+
+        #div1 {background-color: var(--bg-color);
+                color: var(--cor-do-texto);
+                padding: var(--espacamento);        
+        }
+
+        #div2 {color: var(--cor-do-texto);
+                background-color: var(--bg-color);
+                margin: var(--espacamento);
+        }
+
+    </style>
+    </head>
+
+    <body>
+        <div id="div1">
+            <p>Variáveis no CSS devem ser declaradas</p>
+        </div>
+
+        <div id="div2">
+            <p>Variáveis no CSS devem ser declaradas</p>
+        </div>
+
+        <div id="div3">
+            <p>Variáveis no CSS devem ser declaradas</p>
+        </div>
+    </body>
+
+</html>

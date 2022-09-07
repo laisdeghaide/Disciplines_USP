@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<meta>
+<meta charset="UTF-8">
+<title>User Info</title>
+</meta>
+
+<body>
+
+    <div id="app">
+        <h2>User Information</h2>
+
+        <label>Username</label> <input v-model="username" type="text">
+        <br> <br>
+        <label>Password</label> <input v-model="password" type="text">
+        <br> <br>
+        <label>Email</label> <input v-model="email" type="text">
+        <br> <br>
+        <label>Address</label> <input v-model="address" type="text">
+        <br> <br>
+        <input type="button" value="Read" @click="fread">
+        <input type="button" value="Delete" @click="fdelete">
+        <input type="button" value="Create" @click="fcreate">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
+    </script>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                username: "john",
+                password: "",
+                email: "",
+                address: ""
+            },
+            methods: {
+                fread: async function () {
+                    try {
+                        let resp = await fetch("http://localhost:3000/store/" + this.username);
+                        resp = await resp.json();
+                        console.log("resp: " + JSON.stringify(resp));
+
+                        this.username = resp.username;
+                        this.password = resp.password;
+                        this.email = resp.email;
+                        this.address = resp.address;
+                    }
+                    catch (e) { alert("Error: " + e); }
+                },
+
+                fcreate: async function () {
+                    const personalInfo = {
+                        username: this.username,
+                        password: this.password,
+                        email: this.email,
+                        address: this.address
+                    }
+                    try {
+                        let resp = await fetch("http://localhost:3000/store/"+ this.user, {
+                            method: "PUT",
+                            body: JSON.stringify(personalInfo),
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                        resp = await resp.text();
+                        if(resp === 'OK'){
+                            alert(this.username + " created succesfully!")
+                        }else{
+                            throw resp;
+                        }
+                    }
+                    catch (e) { alert("Error: " + e); }
+                },
+
+                fdelete: async function () {
+                    try {
+                        let resp = await fetch("http://localhost:3000/store/" + this.username, {
+                            method: "DELETE",
+                        });
+                        resp = await resp.text();
+                        if(resp === 'OK'){
+                            alert(this.username + " deleted succesfully!")
+                        }else{
+                            throw resp;
+                        }
+                            
+                    }
+                    catch (e) { alert("Error: " + e); }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

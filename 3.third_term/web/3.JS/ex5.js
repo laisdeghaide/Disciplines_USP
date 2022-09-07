@@ -1,0 +1,49 @@
+let library = [
+    {
+        author: 'Bill Gates',
+        title: 'The Road Ahead',
+        readingStatus: true
+    },
+    {
+        author: 'Steve Jobs',
+        title: 'Walter Isaacson',
+        readingStatus: true
+    },
+    {
+        author: 'Suzanne Collins',
+        title: 'Mockingjay: The Final Book of The Hunger Games',
+        readingStatus: false
+    }];
+
+
+for (var i = 0; i < library.length; i++) {
+    var book = library[i].title + ' by ' + library[i].author;
+    if (library[i].readingStatus) {
+        console.log(book + " já foi lido");
+    } else {
+        console.log(book + " ainda não foi lido");
+    }
+}
+
+
+let author = prompt("Digite o nome do autor:")
+let title = prompt("Digite o título do livro:")
+let readingStatus = prompt("Já leu esse livro? (Sim ou Nao): ")
+
+if (readingStatus == "Sim") readingStatus = true
+else readingStatus = false
+
+var newbook = {
+    author: author,
+    title: title,
+    readingStatus: readingStatus
+}
+
+library.push(newbook)
+
+for (var i = 0; i < library.length; i++) {
+    var book = library[i].title + ' by ' + library[i].author;
+    if (!library[i].readingStatus) {
+        console.log(book);
+    }
+}

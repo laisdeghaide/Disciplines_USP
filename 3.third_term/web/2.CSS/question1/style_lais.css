@@ -1,0 +1,255 @@
+
+
+/**** AULA 22
+body {
+    background: url(../2.CSS/img/background.jpg) center center/100% 100% no-repeat fixed;
+}
+*/
+
+/**** AULA 21
+#exemplo {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    transition: all 2s linear;
+}
+
+#exemplo:hover {
+    width: 350px;
+    height: 350px;
+    background-color: green;
+}
+*/
+
+/**** AULA 20
+#exemplo {
+    border-bottom: solid 5px red;
+    outline: dotted 5px green;
+}
+*/
+
+/**** AULA 19
+#conteudo {
+    width: 600px;
+    height: 1200px;
+    background-color: red;
+    position: relative;
+}
+
+#texto {
+    width: 500px;
+    background-color: green;
+    position: fixed;
+    left: 20px;
+    top: 0;
+}
+*/
+
+/**** AULA 18
+#base {
+    background-color: green;
+    width: 600px;
+    height: 600px;
+}
+
+#esquerda {
+    background-color: red;
+    width: 300px;
+    height: 300px;
+    float: left;
+}
+
+#direita {
+    background-color: blue;
+    width: 300px;
+    height: 300px;
+    float: right;
+}
+*/
+
+/**** AULA 16 E 17
+#cores {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(red, green);
+}
+*/
+
+/**** AULA 13, 14, 15
+* {
+    font-size: 100%;
+}
+
+@font-face {
+    font-family: open_sans;
+    src: url(opensans-regular-webfont.woff);
+}
+
+p {
+    font-family: 'Arimo', sans-serif;;
+    font-size: 1.2em;
+}
+*/
+
+/**** AULA 12
+#bloco {
+    background-color: green;
+    width: 300px;
+    height: 150px;
+    border-bottom-left-radius: 20px;
+}
+*/
+
+/**** AULA 11
+#conteudo {
+    background-color: red;
+    width: 300px;
+    height: 70px;
+    overflow: auto;
+}
+
+#conteudo p {
+    opacity: 0.5;
+}
+*/
+
+/**** AULA 10
+* {
+    box-sizing: border-box;
+}
+
+#conteudo {
+    background-color: red;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 10px 10px 5px green;
+}
+*/
+
+/**** AULA 08 E 09
+p {
+    color: red;
+    text-align: justify;
+    text-indent: 20px;
+    line-height: 25px;
+    direction: ltr;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+}
+
+h1 {
+    text-align: left;
+    text-decoration: underline;
+    text-shadow: 1px -30px red;
+}
+
+h2 {
+    text-align: right;
+    text-decoration: overline;
+}
+
+h3 {
+    text-align: center;
+    text-decoration: line-through;
+}
+*/
+
+/**** AULA 07
+#exemplo {
+    background-color: green;
+    color: #fff;
+    width: 500px;
+    height: 200px;
+    padding: 10px 20px 30px 30px;
+}
+
+#exemplo2 {
+    background-color: red;
+    color: #fff;
+    width: 500px;
+    margin: 20px 30px 20px 40px;
+}
+*/
+
+/**** AULA 06
+#conteudo {
+    min-width: 500px;
+    min-height: 20px;
+    background-color: green;
+    color: #fff;
+    padding: 20px;
+}
+*/
+
+/**** AULA 05
+.texto-principal {
+    color: red;
+    text-align: center;
+}
+
+.fundo-principal {
+    background-color: green;
+    padding: 20px;
+}
+
+#conteudo {
+    background-color: blue;
+    padding: 20px;
+    color: green;
+}
+*/
+
+/**** AULA 04
+h1, h2, p {
+    color: red;
+    text-align: center;
+}
+*/
+
+/**** AULA 02 E 03
+* {
+    margin: 0; 
+    padding: 0;;
+}
+
+h1 {
+    color: blue;
+    font-size: 50px;
+}
+
+p {
+    color: green;
+    font-size: 12px;
+}
+
+input[type="text"] {
+    width: 200px;
+    background-color: #ccc;
+    height: 35px;
+    border: none;
+}
+
+input[name="email"] {
+    width: 200px;
+    background-color: #ccc;
+    height: 35px;
+    border: none;
+}
+
+input[type="submit"] {
+    width: 50px;
+    background-color: green;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+*/
+
+/**** AULA 01 
+h1 {
+    color: blue;
+    font-size: 60px;
+    font-family: tahoma;
+}
+*/

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>User Info</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>Product Information</h2>
+
+    <label>Nome</label> <input v-model="name" type="text" /> <br />
+    <br />
+    <label>Descrição</label> <input v-model="description" type="text" />
+    <br />
+    <br />
+    <label>Quantidade em Estoque</label> <input v-model="stockQuantity" type="text" /> <br />
+    <br />
+    <label>Quantidade Vendida</label> <input v-model="soldQuantity" type="text" /> <br />
+    <br />
+    <label>Preço</label> <input v-model="price" type="text" /> <br />
+    <br />
+    <input type="button" value="Read" @click="read" />
+    <input type="button" value="Delete" @click="deleteUser" />
+    <input type="button" value="Create" @click="create" />
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        name: 'Casinha de Gato',
+        description: '',
+        stockQuantity: '',
+        soldQuantity: '',
+        price: ''
+      },
+      methods: {
+        validateFields: function (isCreate = false) {
+          if (isCreate) {
+            if (
+              this.name == '' ||
+              this.description == '' ||
+              !Number.isInteger(Number(this.stockQuantity)) ||
+              !Number.isInteger(Number(this.soldQuantity)) ||
+              !Number.isFinite(Number(this.price))
+            ) {
+              return false;
+            }
+          } else {
+            if (this.name == '') {
+              return false;
+            }
+          }
+          return true;
+        },
+        read: async function () {
+          if (!this.validateFields()) {
+            alert('Campos inválidos!');
+            return;
+          }
+          try {
+            let resp = await fetch(
+              'http://localhost:3000/store/' + this.name
+            );
+            if (resp.status === 200) {
+              resp = await resp.json();
+              console.log('resp: ' + resp);
+              alert(`Produto ${resp.name} encontrado!`);
+
+              this.name = resp.name;
+              this.description = resp.description;
+              this.stockQuantity = resp.stockQuantity;
+              this.soldQuantity = resp.soldQuantity;
+              this.price = resp.price;
+
+            } else if (resp.status === 404) {
+              alert(`Produto ${this.name} não encontrado`);
+            } else {
+              throw resp;
+            }
+          } catch (e) {
+            alert('Error: ' + e);
+          }
+        },
+
+        create: async function () {
+          if (!this.validateFields(true)) {
+            alert('Campos inválidos!');
+            return;
+          }
+          const productInfo = {
+            name: this.name,
+            description: this.description,
+            stockQuantity: this.stockQuantity,
+            soldQuantity: this.soldQuantity,
+            price: this.price
+          };
+          try {
+            let resp = await fetch(
+              'http://localhost:3000/store/' + this.name,
+              {
+                method: 'PUT',
+                body: JSON.stringify(productInfo),
+                headers: { 'Content-Type': 'application/json' },
+              }
+            );
+            resp = await resp.text();
+            if (resp === 'OK') {
+              alert(this.name + ' criado com sucesso!');
+              this.name = '';
+              this.description = '';
+              this.stockQuantity = '';
+              this.soldQuantity = '';
+              this.price = '';
+            } else {
+              throw resp;
+            }
+          } catch (e) {
+            alert('Error: ' + e);
+          }
+        },
+
+        deleteUser: async function () {
+          if (!this.validateFields()) {
+            alert('Campos inválidos!');
+            return;
+          }
+          try {
+            let resp = await fetch(
+              'http://localhost:3000/store/' + this.name,
+              {
+                method: 'DELETE',
+              }
+            );
+            if (resp.status === 200) {
+              resp = await resp.text();
+              if (resp === 'OK') {
+                alert(this.name + ' excluido com sucesso!');
+                this.name = '';
+                this.description = '';
+                this.stockQuantity = '';
+                this.soldQuantity = '';
+                this.price = '';
+              } else {
+                throw resp;
+              }
+            } else if (resp.status === 404) {
+              alert(`Produto ${this.name} inexistente`);
+            } else {
+              throw resp;
+            }
+          } catch (e) {
+            alert('Error: ' + e);
+          }
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>

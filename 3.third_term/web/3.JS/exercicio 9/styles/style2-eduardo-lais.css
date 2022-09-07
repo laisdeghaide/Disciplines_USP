@@ -1,0 +1,38 @@
+.container {
+  width: 450px;
+  background-color: rgb(152, 151, 151);
+  margin: 0 auto;
+  padding: 25px 5px 10px 5px;
+}
+
+span {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 15px;
+}
+
+p {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 30px;
+}
+
+input {
+  margin-left: 20px;
+}
+
+input[type="text"] {
+  width: 50px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #f6b26b;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
