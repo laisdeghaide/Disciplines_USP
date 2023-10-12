@@ -1,0 +1,12 @@
+digraph {
+	graph [fontname=Arial, nodesep=0.125, ranksep=0.25];
+	node [fontcolor=white, fontname=Arial, height=0, shape=box, style=filled, width=0];
+	edge [fontname=Arial];
+	1 [color="#ff0000", fontcolor="#ffffff", fontsize="10.00", label="main\n100.00%\n(0.00%)"];
+	1 -> 2 [arrowsize="0.76", color="#3ec009", fontcolor="#3ec009", fontsize="10.00", label="57.27%\n1×", labeldistance="2.29", penwidth="2.29"];
+	1 -> 3 [arrowsize="0.50", color="#0c9193", fontcolor="#0c9193", fontsize="10.00", label="24.69%\n1×", labeldistance="0.99", penwidth="0.99"];
+	1 -> 4 [arrowsize="0.42", color="#0c668a", fontcolor="#0c668a", fontsize="10.00", label="17.87%\n1×", labeldistance="0.71", penwidth="0.71"];
+	2 [color="#3ec009", fontcolor="#ffffff", fontsize="10.00", label="bubble_sort\n57.27%\n(57.27%)\n1×"];
+	3 [color="#0c9193", fontcolor="#ffffff", fontsize="10.00", label="selection_sort\n24.69%\n(24.69%)\n1×"];
+	4 [color="#0c668a", fontcolor="#ffffff", fontsize="10.00", label="insertion_sort\n17.87%\n(17.87%)\n1×"];
+}
